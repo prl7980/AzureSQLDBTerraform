@@ -1,5 +1,5 @@
 resource "azurerm_mssql_server" "server" {
-  name                         = "asdb2"
+  name                         = "asdb-test"
   resource_group_name          = "SQLDB"
   location                     = "canadacentral"
   administrator_login          = ""
