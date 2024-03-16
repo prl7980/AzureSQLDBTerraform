@@ -22,8 +22,8 @@ resource "azurerm_mssql_database" "db" {
   min_capacity			= 0.5
   auto_pause_delay_in_minutes 	= 60
   import {
-  	storage_uri                  = "<>"
-        storage_key                  = "<>"
+  	storage_uri                  = "<Blob Uri>"
+        storage_key                  = "<Storage Account key>"
         storage_key_type             = "StorageAccessKey"
         administrator_login          = "<>"
         administrator_login_password = "<>"
