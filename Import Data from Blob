@@ -1,1 +1,32 @@
+resource "azurerm_mssql_server" "server" {
+  name                         = "asdb2"
+  resource_group_name          = "SQLDB"
+  location                     = "canadacentral"
+  administrator_login          = ""
+  administrator_login_password = ""
+  version                      = "12.0"
+}
 
+# Allow access to Azure resources
+resource "azurerm_mssql_firewall_rule" "fwaz" {
+  name             = "FirewallAZ"
+  server_id        = azurerm_mssql_server.server.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+}
+
+resource "azurerm_mssql_database" "db" {
+  name      		= 	"Movies"
+  server_id 			= azurerm_mssql_server.server.id
+  sku_name  			= "GP_S_Gen5_1"
+  min_capacity			= 0.5
+  auto_pause_delay_in_minutes 	= 60
+  import {
+  	storage_uri                  = "<>"
+        storage_key                  = "<>"
+        storage_key_type             = "StorageAccessKey"
+        administrator_login          = "<>"
+        administrator_login_password = "<>"
+        authentication_type          = "Sql"
+  }
+}
